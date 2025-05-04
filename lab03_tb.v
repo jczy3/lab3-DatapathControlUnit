@@ -1,11 +1,11 @@
 //=========================================================================
 // Name & Email must be EXACTLY as in Gradescope roster!
-// Name: 
-// Email: 
+// Name: Joseph Caraan
+// Email: jcara025@ucr.edu
 // 
-// Assignment name: 
-// Lab section: 
-// TA: 
+// Assignment name: Lab 3- Datapath Control Unit
+// Lab section: 25
+// TA: Sakshar Chakravarty
 // 
 // I hereby certify that I have not received assistance on this assignment,
 // or used code, from ANY outside source other than the instruction team
@@ -144,8 +144,36 @@ module datapath_tb;
         // -------------------------------------------------------
         // Test group 2: ALU Control Unit
         // -------------------------------------------------------
-        $write("\tTest Case 1: R-type (add) ...");
+        $write("\tTest Case 1: R-type (and) ...");
         test_case(32'h00000024, 32'hFFFFFFFF, 32'h0001, 1'b0, 32'h0001, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 2: R-type (or) ...");
+        test_case(32'h00000025, 32'hFFFFFFFF, 32'h0001, 1'b0, 32'hFFFFFFFF, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 3: R-type (add) ...");
+        test_case(32'h00000020, 32'hFFFFFFFF, 32'h0001, 1'b1, 32'h0000, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 4: R-type (sub) ...");
+        test_case(32'h00000022, 32'hFFFFFFFF, 32'h0001, 1'b0, 32'hFFFFFFFE, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 5: R-type (slt) ...");
+        test_case(32'h0000002A, 32'hFFFFFFFF, 32'h0001, 1'b0, 32'h0001, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 6: R-type (nor) ...");
+        test_case(32'h00000027, 32'hFFFFFFFF, 32'h0001, 1'b1, 32'h0000, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 7: I-type (addi) ...");
+        test_case(32'h20000004, 32'hFFFFFFFB, 32'h0004, 1'b0, 32'hFFFFFFFF, 1'b0, 1'b0, 1'b0, 1'b0, 2'b00, 1'b0, 1'b1, 1'b1);
+
+        $write("\tTest Case 8: I-type (lw) ...");
+        test_case(32'h8C000020, 32'h000000FF, 32'h0020, 1'b0, 32'h011F, 1'b0, 1'b0, 1'b1, 1'b1, 2'b00, 1'b0, 1'b1, 1'b1);
+
+        $write("\tTest Case 9: I-type (sw) ...");
+        test_case(32'hAC000064, 32'h000000FF, 32'h0064, 1'b0, 32'h0163, 1'b0, 1'b0, 1'b0, 1'b0, 2'b00, 1'b1, 1'b1, 1'b0);
+
+        $write("\tTest Case 10: I-type (beq) ...");
+        test_case(32'h10000025, 32'h000000FF, 32'h0025, 1'b0, 32'h00DA, 1'b0, 1'b1, 1'b0, 1'b0, 2'b01, 1'b0, 1'b0, 1'b0);
+
 
         // -------------------------------------------------------
         // More ALU Control Unit tests jere
